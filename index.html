@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pancake time!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="pancakes.css">
+  <script defer src="pancakes-data.js"></script>
+  <script defer src="pancakes-art.js"></script>
+  <script defer src="pancakes-app.js"></script>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <span class="hero-icon" aria-hidden="true">🥞</span>
+      <h1>Pancake time!</h1>
+      <p>Which pancake do you want today?</p>
+    </header>
+
+    <section class="choices" id="choices" aria-label="Pick a pancake"></section>
+
+    <section class="recipe" id="recipe" hidden aria-live="polite">
+      <div class="recipe-head">
+        <span class="recipe-emoji" id="recipe-emoji" aria-hidden="true"></span>
+        <h2 id="recipe-title"></h2>
+      </div>
+      <div class="recipe-cols">
+        <canvas class="recipe-picture" id="recipe-picture" width="320" height="260" role="img"></canvas>
+        <div>
+          <h3>You need</h3>
+          <ul class="ingredients" id="recipe-ingredients"></ul>
+        </div>
+        <div>
+          <h3>How to make it</h3>
+          <ol class="steps" id="recipe-steps"></ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="video" id="video" hidden>
+      <h2>Watch how it's made 🎬</h2>
+      <div class="player">
+        <canvas id="movie" width="640" height="360" role="img" aria-label="10-second animation showing how the pancake is made"></canvas>
+        <div class="controls">
+          <button type="button" id="play">▶ Play</button>
+          <div class="bar" aria-hidden="true"><div id="bar-fill"></div></div>
+          <span id="time">0:00 / 0:10</span>
+        </div>
+      </div>
+      <button type="button" id="start-over">← Pick another pancake</button>
+    </section>
+
+    <noscript><p class="noscript">This app needs JavaScript to work.</p></noscript>
+  </main>
+</body>
+</html>
