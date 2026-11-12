@@ -14,6 +14,12 @@ function listItems(items) {
 
 const formatTime = seconds => `0:${String(Math.floor(seconds)).padStart(2, '0')}`;
 
+// Icons come from our own data file, so inserting their SVG markup is safe.
+function setIcon(element, pancake) {
+  if (pancake.icon) element.innerHTML = pancake.icon;
+  else element.textContent = pancake.emoji;
+}
+
 function showFrame() {
   drawMovieFrame(byId('movie'), current, elapsed);
   byId('bar-fill').style.width = `${(elapsed / MOVIE_SECONDS) * 100}%`;
@@ -51,7 +57,7 @@ function choose(pancake) {
   });
 
   byId('recipe').style.setProperty('--accent', pancake.color);
-  byId('recipe-emoji').textContent = pancake.emoji;
+  setIcon(byId('recipe-emoji'), pancake);
   byId('recipe-title').textContent = pancake.name;
   byId('recipe-ingredients').replaceChildren(...listItems([...baseIngredients, ...pancake.toppings]));
   byId('recipe-steps').replaceChildren(...listItems([...baseSteps, pancake.finish]));
@@ -75,7 +81,7 @@ pancakes.forEach(pancake => {
   button.setAttribute('aria-pressed', 'false');
   button.style.setProperty('--accent', pancake.color);
   button.innerHTML = '<span class="choice-emoji" aria-hidden="true"></span><span class="choice-name"></span>';
-  button.querySelector('.choice-emoji').textContent = pancake.emoji;
+  setIcon(button.querySelector('.choice-emoji'), pancake);
   button.querySelector('.choice-name').textContent = pancake.name;
   button.addEventListener('click', () => choose(pancake));
   byId('choices').append(button);
